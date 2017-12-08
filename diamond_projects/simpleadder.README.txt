@@ -1,0 +1,43 @@
+@start_date 2017-12-07
+@author Raymond Byczko
+@company self
+@file simpleadder.README.txt
+
+This Lattice Diamond project represents a very simple
+adder which will add 3 to the value indicated on the
+dip switch.  The result is displayed on the LEDs.
+
+The board used is as follows.
+
+* MachX03L
+* 6900C
+
+This project is a good proof of concept for incorporating
+LEDs and dipswitches, and the assignment of particular
+dipswitches to pins.
+
+Here is the convention used in this project.
+
+* dipswitch down is '0' input
+* dipswitch up is '1' input
+* LED off indicates a '1' output
+* LED on indicates a '0' output
+
+When using the board and loading the bit stream into
+SRAM, then view the board with the following convention.
+
+* dipswitch bank to lower left
+* LED bank to lower right
+* blue led at top
+
+Here is the significant bit convention for the dipswitch
+bank and the LED bank.
+
+* left most dipswitch is MSB
+* right most dipswitch is LSB
+* the right most 5 LEDs in the LED bank are used as output.
+* these 5 LEDs are marked are D5 through D9 inclusive.
+
+When all the dipswitch are down, then number 0 is added to
+3, which yields a sum of 3.  3 based 10 results in 11 based 2.
+The right most two LEDs are off, which indicates 11 based 2.
