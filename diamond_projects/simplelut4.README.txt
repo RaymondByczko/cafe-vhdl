@@ -1,0 +1,87 @@
+@start_date 2017-12-07
+@author Raymond Byczko
+@company self
+@file simplelut4.README.txt
+
+This Lattice Diamond project represents a very simple
+demo of how to use a lattice FPGA primitive, a look
+up table.
+
+The board used is as follows.
+
+* MachX03L
+* 6900C
+
+This project is a good proof of concept for incorporating
+an FPGA primitive, a 4 digit lookup table, that is provided
+by Lattice.
+
+See this install path for the *.vhd file of interest for the
+lookup table.
+
+* /usr/local/diamond/3.9_x64/ispfpga/vhdl/data/machxo3l/src
+* MACHX03L_LUT.vhd
+
+A pdf for FPGA primitives is as follows.
+
+* FPGALibrariesReferenceGuide31.pdf
+
+This helps the hardware designer in instantiating the
+component.
+
+It also serves as demo of LEDs and dipswitches, and the
+assignment of particular dipswitches to pins.
+
+Here is the convention used in this project.
+
+* dipswitch down is '0' input
+* dipswitch up is '1' input
+* LED off indicates a '1' output
+* LED on indicates a '0' output
+
+When using the board and loading the bit stream into
+SRAM, then view the board with the following convention.
+
+* dipswitch bank to lower left
+* LED bank to lower right
+* blue led at top
+
+Here is the significant bit convention for the dipswitch
+bank and the LED bank.
+
+* left most dipswitch is MSB
+* right most dipswitch is LSB
+* the right most LED in the LED bank is used as output.
+* this single LED is marked as D9.
+
+When all the dipswitch are up, then number 1111 base 2 
+is considered as input.  This translates to a logical
+1 output via the LUT.  This is because we set the
+LUT input output function with a command like this (see
+the *.vhd file):
+
+Generic Map (INIT=>b"1100_0000_0000_0000")
+
+Each 1 or 0 in the map indicates the output for that position
+in the table.  Our 1111 base 2 corresponds to here:
+
+
+Generic Map (INIT=>b"1100_0000_0000_0000")
+                     ^
+                     |
+
+The 1 output comes out as LED D9 in a logical 1 state (which
+is LED off).
+
+The dipswitch pattern of (up,up,up,down) yields 1110 based 2.
+This translates to an output of 1 via are map and is specified here:
+
+
+Generic Map (INIT=>b"1100_0000_0000_0000")
+                      ^
+                      |
+
+All other combinations have an output of logical 0 which results
+in the single LED D9 turning on.
+
+
